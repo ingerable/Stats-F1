@@ -2,4 +2,4 @@
 
 ## Api 
 
-[http://ergast.com/mrd/](Link to used API)
+http://ergast.com/mrd/
