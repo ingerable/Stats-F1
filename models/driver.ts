@@ -21,6 +21,10 @@ export default class Driver implements IDriver, WikipediaArticle {
         this.birthDate = birthDate;
         this.nationality = nationality;
     }
+
+    getFullName(): String {
+        return this.name + " " + this.familyName;
+    }
     
     static getDriversFromJson(driversJson: Array<IDriver>): Array<Driver> {
         let drivers: Array<Driver> = [];

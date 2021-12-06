@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Driver from '../../models/driver';
+import { CardHeader } from '@mui/material';
 
 interface DriverCardProps {
   driver: Driver;
@@ -14,12 +15,10 @@ export default function DriverCard(props: DriverCardProps) {
   
   return (
     <Card sx={{ minWidth: 275, border: "2px solid #1C6EA4", borderRadius: "12px" }}>
+      <CardHeader title={props.driver.getFullName()} subheader={props.driver.nationality}/>
       <CardContent>
-        <Typography variant="h5" component="div">
-          {props.driver.name} {props.driver.familyName}
-        </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {props.driver.nationality}
+          {props.driver.birthDate}
         </Typography>
       </CardContent>
       <CardActions>
