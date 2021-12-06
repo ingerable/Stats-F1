@@ -1,42 +1,31 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Driver from '../../models/driver';
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+interface DriverCardProps {
+  driver: Driver;
+}
 
-export default function DriverCard() {
+export default function DriverCard(props: DriverCardProps) {
+  
   return (
     <Card sx={{ minWidth: 275, border: "2px solid #1C6EA4", borderRadius: "12px" }}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
         <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
+          {props.driver.name} {props.driver.familyName}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          {props.driver.nationality}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" href={props.driver.wikipediaArticleUrl} target="_blank">Learn More</Button>
       </CardActions>
     </Card>
   );
 }
+

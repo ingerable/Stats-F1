@@ -1,15 +1,39 @@
-export default class Driver {
-    name: String = "";
-    birthDate: Date | undefined;
-    nationnality: String | undefined;
+import WikipediaArticle from "./WikipediaArticle";
 
-    constructor (name: String, birthDate: Date, nationnality: String) {
+interface IDriver {
+    familyName: String;
+    name: String;
+    birthDate: String | undefined;
+    nationality: String | undefined;
+    wikipediaArticleUrl: String;
+}
+
+export default class Driver implements IDriver, WikipediaArticle {
+    familyName: String = "";
+    name: String = "";
+    birthDate: String | undefined;
+    nationality: String | undefined;
+    wikipediaArticleUrl: String = ""
+
+    constructor (familyName: String, name: String, birthDate: String, nationality: String) {
+        this.familyName = familyName;
         this.name = name;
         this.birthDate = birthDate;
-        this.nationnality = nationnality;
+        this.nationality = nationality;
+    }
+    
+    static getDriversFromJson(driversJson: Array<IDriver>): Array<Driver> {
+        let drivers: Array<Driver> = [];
+        drivers = driversJson.map((driverJSON, i) => {
+            return Driver.getDriverFromJson(driverJSON);
+        });
+
+        return drivers;
     }
 
-    static createFromApi(json: any): Driver {
-        return new Driver("Lewis HAMILTON", new Date("12/02/1997"), "British");
+    static getDriverFromJson(driverJson: IDriver): Driver {
+        let driver = new Driver(driverJson.familyName, driverJson.name, driverJson.birthDate, driverJson.nationality);
+        driver.wikipediaArticleUrl = driverJson.wikipediaArticleUrl;
+        return driver;
     }
 }
